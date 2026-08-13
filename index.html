@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0c1710">
+<meta name="description" content="IFC Restaurant Luxettipet — browse the menu, build your order and send it directly on WhatsApp.">
+<title>IFC Restaurant | Luxettipet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#07100a; --bg2:#0c1710; --card:#112018; --card2:#16281e;
+  --cream:#fff5df; --muted:#c3c8bc; --green:#d8ff54; --green2:#aee62f;
+  --orange:#ff9d45; --red:#ff674e; --line:rgba(255,255,255,.11);
+  --shadow:0 26px 70px rgba(0,0,0,.35); --max:1200px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:"DM Sans",sans-serif;background:var(--bg);color:var(--cream);line-height:1.55}
+body.lock{overflow:hidden} a{text-decoration:none;color:inherit} button,input{font:inherit}
+img{max-width:100%;display:block}.wrap{width:min(var(--max),calc(100% - 36px));margin:auto}
+nav{position:fixed;z-index:60;inset:0 0 auto;background:rgba(7,16,10,.74);backdrop-filter:blur(18px);border-bottom:1px solid transparent}
+nav.scrolled{border-color:var(--line);background:rgba(7,16,10,.93)}
+.navin{height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.logo{font-family:"Playfair Display";font-size:1.45rem;font-weight:800}.logo b{color:var(--green)}
+.navlinks{display:flex;align-items:center;gap:26px;color:#d8ddcf}.navlinks a:hover{color:var(--green)}
+.btn{border:0;cursor:pointer;border-radius:999px;padding:13px 20px;font-weight:800;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:.2s}
+.btn:hover{transform:translateY(-2px)}.primary{background:var(--green);color:#102008}.darkbtn{background:#17231c;color:var(--cream);border:1px solid var(--line)}
+.cartbtn{position:relative}.badge{min-width:22px;height:22px;border-radius:999px;background:var(--red);color:#fff;display:grid;place-items:center;font-size:.72rem;padding:0 6px}
+.hero{min-height:760px;padding:128px 0 76px;position:relative;display:flex;align-items:center;overflow:hidden;background:
+linear-gradient(90deg,rgba(7,16,10,.98) 0%,rgba(7,16,10,.92) 42%,rgba(7,16,10,.28) 100%),
+url('https://content.jdmagicbox.com/comp/lakshettipet/v5/9999p8739.8739.230607105503.s7v5/catalogue/ifc-restaurant-luxettipet-lakshettipet-restaurants-trulw0f2gt.jpg') center/cover no-repeat;}
+.hero:after{content:"";position:absolute;inset:auto -100px -160px auto;width:460px;height:460px;border-radius:50%;background:var(--green);filter:blur(140px);opacity:.16}
+.hero-content{position:relative;z-index:2;max-width:800px}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(216,255,84,.35);background:rgba(216,255,84,.08);color:var(--green);padding:8px 13px;border-radius:999px;font-size:.82rem;font-weight:800;letter-spacing:.04em}
+h1,h2,h3{font-family:"Playfair Display";line-height:1.03;margin:0}
+h1{font-size:clamp(4rem,8vw,7.7rem);letter-spacing:-.045em;margin:17px 0 23px}h1 em{font-style:normal;color:var(--green)}
+.hero p{font-size:1.12rem;color:#e0e4d9;max-width:650px;margin:0 0 31px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+.info-strip{position:relative;z-index:3;margin-top:-40px}.info-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;background:var(--cream);color:#122016;border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.info{padding:24px 28px;border-right:1px solid #dfdacb}.info:last-child{border:0}.info small{display:block;color:#627064;font-weight:700;margin-bottom:5px}.info strong{font-size:.98rem}
+section{padding:100px 0}.heading{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:36px}.heading h2{font-size:clamp(2.7rem,5.5vw,4.9rem);letter-spacing:-.035em}.heading p{color:var(--muted);max-width:470px;margin:0}
+.menu-area{background:var(--bg2)}.tools{position:sticky;top:76px;z-index:35;background:rgba(12,23,16,.94);backdrop-filter:blur(16px);padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.searchrow{display:grid;grid-template-columns:1fr auto;gap:13px}.search{width:100%;border:1px solid var(--line);background:#0c1710;color:#fff5df;border-radius:16px;padding:14px 16px;outline:none}.search:focus{border-color:rgba(216,255,84,.65)}
+.filters{display:flex;gap:8px;overflow:auto;padding:12px 0 2px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}
+.chip{white-space:nowrap;border:1px solid var(--line);background:#101d15;color:#dfe4d8;padding:9px 14px;border-radius:999px;cursor:pointer;font-weight:700}.chip.active{background:var(--green);color:#122016;border-color:var(--green)}
+.menu-content{padding-top:42px}.cat-section{margin-bottom:55px}.cat-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.cat-title h3{font-size:2rem}.cat-count{color:#8d9a8e}
+.items{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.item{min-height:176px;background:var(--card);border:1px solid var(--line);border-radius:19px;padding:22px;display:grid;grid-template-columns:1fr auto;gap:16px;transition:.2s}
+.item:hover{border-color:rgba(216,255,84,.32);background:var(--card2);transform:translateY(-2px)}
+.item h4{margin:8px 0 8px;font-size:1.08rem}.item p{margin:0;color:#9eaa9e;font-size:.9rem;max-width:440px}.price{font-size:1.08rem;font-weight:800;color:var(--green);margin-top:15px}
+.diet{width:17px;height:17px;border:2px solid currentColor;display:grid;place-items:center}.diet:after{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}.veg{color:#60d56c}.nonveg{color:#ff6f60}
+.add{align-self:end;border:1px solid rgba(216,255,84,.45);background:transparent;color:var(--green);border-radius:12px;padding:9px 17px;font-weight:800;cursor:pointer}.add:hover{background:var(--green);color:#102008}
+.empty{text-align:center;padding:60px 20px;color:#8b978d;display:none}
+.gallery{background:#08110b}.gallery-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:260px 260px;gap:14px}.g{border-radius:21px;overflow:hidden;background:#132018;position:relative}.g:first-child{grid-row:1/3}.g img{width:100%;height:100%;object-fit:cover;transition:.4s}.g:hover img{transform:scale(1.04)}
+.about{background:#fff5df;color:#132017}.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}.about h2{font-size:clamp(2.7rem,5vw,4.8rem);margin-bottom:22px}.about p{color:#55625a}.about-card{background:#102017;color:#fff5df;border-radius:26px;padding:34px}.features{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:23px}.feature{background:#17291f;border:1px solid rgba(255,255,255,.08);padding:18px;border-radius:15px}.feature b{display:block;color:var(--green)}
+.location{background:#0a140d}.locgrid{display:grid;grid-template-columns:.82fr 1.18fr;gap:20px}.loccard,.map{border:1px solid var(--line);background:var(--card);border-radius:23px;overflow:hidden}.loccard{padding:35px}.loccard h2{font-size:2.7rem;margin:14px 0 20px}.loccard p{color:var(--muted)}.map iframe{width:100%;height:480px;border:0;display:block}
+footer{border-top:1px solid var(--line);padding:32px 0 44px;color:#9ca69d}.foot{display:flex;justify-content:space-between;gap:20px;align-items:center}
+.drawerback{position:fixed;z-index:80;inset:0;background:rgba(0,0,0,.58);opacity:0;pointer-events:none;transition:.25s}.drawerback.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;z-index:90;right:0;top:0;bottom:0;width:min(460px,100%);background:#0f1b13;transform:translateX(100%);transition:.28s;display:flex;flex-direction:column;box-shadow:-30px 0 60px rgba(0,0,0,.35)}.drawer.open{transform:none}
+.drawer-head{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.drawer-head h3{font-size:1.75rem}.x{border:0;background:#1b2b20;color:white;border-radius:50%;width:39px;height:39px;cursor:pointer}
+.cart-list{padding:18px 24px;overflow:auto;flex:1}.cart-empty{text-align:center;color:#89948b;padding:60px 10px}.cartitem{padding:16px 0;border-bottom:1px solid var(--line)}.cartitem-top{display:flex;justify-content:space-between;gap:12px}.cartitem b{font-size:.94rem}.cartitem .p{color:var(--green);font-weight:800}.qty{display:flex;align-items:center;gap:11px;margin-top:11px}.qty button{width:31px;height:31px;border-radius:50%;border:1px solid var(--line);background:#17271d;color:white;cursor:pointer}.remove{margin-left:auto!important;width:auto!important;border:0!important;color:#ff9584!important;background:transparent!important}
+.cart-foot{padding:20px 24px 24px;border-top:1px solid var(--line);background:#0b160f}.total{display:flex;justify-content:space-between;font-size:1.15rem;font-weight:800;margin-bottom:15px}.checkout{width:100%;background:#25D366;color:#06280f}.smallnote{font-size:.78rem;color:#87938a;margin-top:11px;text-align:center}
+.toast{position:fixed;z-index:120;left:50%;bottom:25px;transform:translate(-50%,20px);background:#fff5df;color:#152018;padding:12px 18px;border-radius:999px;font-weight:800;opacity:0;pointer-events:none;transition:.25s;box-shadow:var(--shadow)}.toast.show{opacity:1;transform:translate(-50%,0)}
+.mobileCart{display:none}
+@media(max-width:900px){
+ .navlinks a:not(.cartbtn){display:none}.info-grid,.about-grid,.locgrid{grid-template-columns:1fr}.info{border-right:0;border-bottom:1px solid #dfdacb}.items{grid-template-columns:1fr}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:340px 220px}.g:first-child{grid-column:1/3;grid-row:auto}.heading{display:block}.heading p{margin-top:15px}
+}
+@media(max-width:600px){
+ .wrap{width:calc(100% - 26px)}.hero{min-height:710px;background-position:58% center}h1{font-size:3.7rem}.hero-actions .btn{width:100%}.info-strip{margin-top:-27px}
+ section{padding:76px 0}.searchrow{grid-template-columns:1fr}.searchrow .btn{display:none}.tools{top:75px}.item{min-height:155px;padding:18px}.gallery-grid{display:block}.g{height:260px;margin-bottom:12px}.g:first-child{height:340px}
+ .features{grid-template-columns:1fr}.map iframe{height:380px}.foot{display:block}.foot .logo{margin-bottom:8px}.mobileCart{display:flex;position:fixed;z-index:55;right:14px;bottom:14px;box-shadow:var(--shadow)}
+}
+</style>
+</head>
+<body>
+<nav id="nav">
+  <div class="wrap navin">
+    <a class="logo" href="#top">IFC <b>Restaurant</b></a>
+    <div class="navlinks">
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#location">Location</a>
+      <button class="btn primary cartbtn" onclick="openCart()">Order <span class="badge cartCount">0</span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+ <div class="wrap hero-content">
+   <span class="pill">● OPEN DAILY · 11 AM – 10 PM</span>
+   <h1>Cravings?<br><em>Handled.</em></h1>
+   <p>Pizza, burgers, crispy chicken, combos, shakes and mocktails — browse IFC Restaurant’s menu and send your order directly on WhatsApp.</p>
+   <div class="hero-actions">
+     <a class="btn primary" href="#menu">Browse Menu ↓</a>
+     <a class="btn darkbtn" href="https://wa.me/918339833981?text=Hi%20IFC%20Restaurant%20Luxettipet%2C%20I%20want%20to%20place%20an%20order." target="_blank" rel="noopener">WhatsApp IFC</a>
+     <a class="btn darkbtn" href="tel:+918339833981">Call Now</a>
+   </div>
+ </div>
+</header>
+
+<div class="info-strip">
+ <div class="wrap info-grid">
+   <div class="info"><small>LOCATION</small><strong>Beside Vaishnavi Degree College & Honda Showroom, Uthkoor Chowrasta, Luxettipet</strong></div>
+   <div class="info"><small>HOURS</small><strong>11:00 AM – 10:00 PM</strong></div>
+   <div class="info"><small>ORDER / DELIVERY</small><strong>+91 83398 33981</strong></div>
+ </div>
+</div>
+
+<section class="menu-area" id="menu">
+ <div class="wrap heading">
+   <div><span class="pill">FULL MENU</span><h2>Pick your favorites.</h2></div>
+   <p>Add items to your cart, adjust quantities, then send the complete order to IFC on WhatsApp in one tap.</p>
+ </div>
+ <div class="tools">
+  <div class="wrap">
+   <div class="searchrow">
+    <input id="search" class="search" placeholder="Search pizza, burger, mocktail…" oninput="renderMenu()">
+    <button class="btn primary" onclick="openCart()">View Cart · <span class="cartCount">0</span></button>
+   </div>
+   <div class="filters" id="filters"></div>
+  </div>
+ </div>
+ <div class="wrap menu-content">
+   <div id="menuMount"></div>
+   <div class="empty" id="empty">No menu items match your search.</div>
+ </div>
+</section>
+
+<section class="gallery" id="gallery">
+ <div class="wrap heading">
+   <div><span class="pill">IFC LUXETTIPET</span><h2>See the space.</h2></div>
+   <p>Restaurant and food imagery from IFC’s public business gallery.</p>
+ </div>
+ <div class="wrap gallery-grid">
+   <div class="g"><img loading="lazy" src="https://content.jdmagicbox.com/comp/lakshettipet/v5/9999p8739.8739.230607105503.s7v5/catalogue/ifc-restaurant-luxettipet-lakshettipet-restaurants-trulw0f2gt.jpg" alt="IFC Restaurant Luxettipet"></div>
+   <div class="g"><img loading="lazy" src="https://content.jdmagicbox.com/comp/lakshettipet/v5/9999p8739.8739.230607105503.s7v5/catalogue/ifc-restaurant-luxettipet-lakshettipet-restaurants-v7ee8u9q60-250.jpg" alt="IFC food"></div>
+   <div class="g"><img loading="lazy" src="https://content.jdmagicbox.com/comp/lakshettipet/v5/9999p8739.8739.230607105503.s7v5/catalogue/ifc-restaurant-luxettipet-lakshettipet-restaurants-xxi2tzqzdc-250.jpg" alt="IFC ambience"></div>
+   <div class="g"><img loading="lazy" src="https://content.jdmagicbox.com/comp/lakshettipet/v5/9999p8739.8739.230607105503.s7v5/catalogue/ifc-restaurant-luxettipet-lakshettipet-restaurants-jz4ahzxz5r-250.jpg" alt="IFC drink"></div>
+   <div class="g"><img loading="lazy" src="https://content.jdmagicbox.com/comp/lakshettipet/v5/9999p8739.8739.230607105503.s7v5/catalogue/ifc-restaurant-luxettipet-lakshettipet-restaurants-fa5fkqr7zm.jpg" alt="IFC Restaurant interior"></div>
+ </div>
+</section>
+
+<section class="about" id="about">
+ <div class="wrap about-grid">
+  <div>
+   <span class="pill" style="color:#244511;border-color:#a4c947;background:#dfff8d">ABOUT IFC</span>
+   <h2>Your neighborhood spot for fast, fun comfort food.</h2>
+   <p>IFC Restaurant in Luxettipet offers dine-in, takeaway and home delivery, with menu choices ranging from pizzas and burgers to fried chicken, snacks, shakes and mocktails.</p>
+   <p>Use the website cart to prepare your order. Checkout opens WhatsApp with every selected item, quantity and subtotal already written for you.</p>
+  </div>
+  <div class="about-card">
+   <h3 style="font-size:2rem">Good to know</h3>
+   <div class="features">
+    <div class="feature"><b>Dine-in</b><span>Eat at the restaurant</span></div>
+    <div class="feature"><b>Takeaway</b><span>Order & pick up</span></div>
+    <div class="feature"><b>Home Delivery</b><span>Contact IFC directly</span></div>
+    <div class="feature"><b>Family Friendly</b><span>Kids menu / high chair listed</span></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="location" id="location">
+ <div class="wrap heading">
+   <div><span class="pill">VISIT US</span><h2>Find IFC in Luxettipet.</h2></div>
+   <p>Use Google Maps for live directions to the restaurant.</p>
+ </div>
+ <div class="wrap locgrid">
+  <div class="loccard">
+    <span class="pill">IFC RESTAURANT</span>
+    <h2>Uthkoor Chowrasta</h2>
+    <p>Beside Vaishnavi Degree College & Honda Showroom, Uthkoor Chowrasta, Luxettipet, Mancherial – 504215, Telangana.</p>
+    <p><strong>Daily:</strong> 11:00 AM – 10:00 PM</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:25px">
+      <a class="btn primary" target="_blank" rel="noopener" href="https://www.google.com/maps/place/IFC+Restaurant+luxettipet/@18.8968933,79.2067892,17z/">Get Directions</a>
+      <a class="btn darkbtn" href="tel:+918339833981">Call +91 83398 33981</a>
+    </div>
+  </div>
+  <div class="map"><iframe title="IFC Restaurant Luxettipet map" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=IFC+Restaurant+Luxettipet&output=embed"></iframe></div>
+ </div>
+</section>
+
+<footer>
+ <div class="wrap foot">
+  <div class="logo">IFC <b>Restaurant</b></div>
+  <div>Luxettipet, Telangana · <span id="year"></span> · Menu availability and final bill confirmed by restaurant.</div>
+ </div>
+</footer>
+
+<button class="btn primary mobileCart" onclick="openCart()">Cart <span class="badge cartCount">0</span></button>
+<div class="drawerback" id="back" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer">
+ <div class="drawer-head"><h3>Your order</h3><button class="x" onclick="closeCart()">✕</button></div>
+ <div class="cart-list" id="cartList"></div>
+ <div class="cart-foot">
+  <div class="total"><span>Subtotal</span><span id="total">₹0</span></div>
+  <button class="btn checkout" onclick="checkout()">Send order on WhatsApp</button>
+  <div class="smallnote">This prepares a WhatsApp message; IFC confirms item availability, delivery, taxes and final total.</div>
+ </div>
+</aside>
+<div class="toast" id="toast">Added to cart</div>
+
+<script>
+const MENU = [{"cat": "Combos & Meals", "name": "Veg IFC Box Combo", "price": 399, "veg": true, "desc": "Veg Finger (4 pcs) + Veg Nuggets (4 pcs) + French Fries + Coke (250 ml)"}, {"cat": "Combos & Meals", "name": "Chicken IFC Box Combo", "price": 499, "veg": false, "desc": "Hot & Crispy Chicken (2 pcs) + Chicken Wings (2 pcs) + French Fries + Coke (500 ml)"}, {"cat": "Combos & Meals", "name": "Veg Snacker Burger Meal", "price": 180, "veg": true, "desc": "Veg Snacker Burger + French Fries + Coke (250 ml)"}, {"cat": "Combos & Meals", "name": "Veg Zinger Burger Meal", "price": 213, "veg": true, "desc": "Veg Zinger Burger + French Fries + Coke (250 ml)"}, {"cat": "Combos & Meals", "name": "Paneer Crunch Burger Meal", "price": 249, "veg": true, "desc": "Paneer Crunch Burger + French Fries + Coke (250 ml)"}, {"cat": "Combos & Meals", "name": "Veg U And Me Pizza Meal", "price": 374, "veg": true, "desc": "Regular pizza + French Fries + 2 half Brownies + Coke (500 ml)"}, {"cat": "Combos & Meals", "name": "Veg Hum 4 Pizza Meal", "price": 713, "veg": true, "desc": "French Fries + any Medium pizza + 2 full Brownies + Coke (500 ml)"}, {"cat": "Combos & Meals", "name": "Chicken Snacker Burger Meal", "price": 200, "veg": false, "desc": "Chicken Snacker Burger + French Fries + Coke (250 ml)"}, {"cat": "Combos & Meals", "name": "Chicken Zinger Burger Meal", "price": 225, "veg": false, "desc": "Chicken Zinger Burger + French Fries + Coke (250 ml)"}, {"cat": "Combos & Meals", "name": "IFC Special Burger Meal", "price": 238, "veg": false, "desc": "IFC Special Burger + French Fries + Coke (250 ml)"}, {"cat": "Combos & Meals", "name": "Non Veg U And Me Pizza Meal", "price": 400, "veg": false, "desc": "Regular pizza + French Fries + 2 half Brownies + Coke (500 ml)"}, {"cat": "Combos & Meals", "name": "Non Veg Hum 4 Pizza Meal", "price": 749, "veg": false, "desc": "French Fries + any Medium pizza + 2 full Brownies + Coke (500 ml)"}, {"cat": "Starters", "name": "Chicken Hot And Crispy", "price": 249, "veg": false, "desc": "Tangy and spicy."}, {"cat": "Starters", "name": "Chicken Korean", "price": 249, "veg": false, "desc": "Tangy and spicy."}, {"cat": "Starters", "name": "Chicken Masala", "price": 261, "veg": false, "desc": "Tangy and spicy."}, {"cat": "Starters", "name": "Chicken Hot And Crunchy (8 Pieces)", "price": 824, "veg": false, "desc": ""}, {"cat": "Starters", "name": "Chicken Masala Fiery (8 Pieces)", "price": 825, "veg": false, "desc": ""}, {"cat": "Pizza", "name": "Veg Half And Half Cocktail Pizza (Medium, 10 Inches)", "price": 369, "veg": true, "desc": ""}, {"cat": "Pizza", "name": "Non Veg Half And Half Cocktail Pizza (Medium, 10 Inches)", "price": 406, "veg": false, "desc": ""}, {"cat": "Pizza", "name": "Cheese Bite Pizza", "price": 125, "veg": true, "desc": "Lots of cheese."}, {"cat": "Pizza", "name": "Simply Veg Pizza", "price": 163, "veg": true, "desc": "Onion, green pepper, tomato."}, {"cat": "Pizza", "name": "Mushroom Pizza", "price": 194, "veg": true, "desc": "Mushroom, garlic, chilli."}, {"cat": "Pizza", "name": "Mexican Treat Pizza", "price": 250, "veg": true, "desc": "Chilli, sweet corn, tomato, olives."}, {"cat": "Pizza", "name": "American Hot Pizza", "price": 249, "veg": true, "desc": "Green pepper, baby corn, chilli."}, {"cat": "Pizza", "name": "Hawaiian Pizza", "price": 224, "veg": true, "desc": "Mushroom, pineapple, jalapeño."}, {"cat": "Pizza", "name": "Fresh Veggie Special Pizza", "price": 213, "veg": true, "desc": "Green pepper, mushroom, sweet corn, paneer, olives."}, {"cat": "Pizza", "name": "Pepper Pizza", "price": 213, "veg": true, "desc": "Cottage cheese, chilli, jalapeño."}, {"cat": "Pizza", "name": "Paneer Tikka Pizza", "price": 236, "veg": true, "desc": "Paneer, peppers, tomato."}, {"cat": "Pizza", "name": "Dum Ka Aloo Pizza", "price": 199, "veg": true, "desc": "Potato, onion, garlic, chilli, tomato."}, {"cat": "Pizza", "name": "Yum Dum Pizza", "price": 199, "veg": true, "desc": "Paneer, garlic, spinach."}, {"cat": "Pizza", "name": "Indian Fiesta Pizza", "price": 261, "veg": true, "desc": "Peppers, chilli, garlic, green peas masala."}, {"cat": "Pizza", "name": "Meat And Meat Pizza", "price": 274, "veg": false, "desc": "Assorted meat."}, {"cat": "Pizza", "name": "New Pickled Chicken Pizza", "price": 286, "veg": false, "desc": "Mexican chicken, sausage, pepperoni, onion, jalapeño."}, {"cat": "Pizza", "name": "Just Pepperoneez Pizza", "price": 286, "veg": false, "desc": "Lamb pepperoni."}, {"cat": "Pizza", "name": "New Manchurian Pizza", "price": 261, "veg": false, "desc": "Schezwan chicken and peppers."}, {"cat": "Pizza", "name": "Hot Shot Pizza", "price": 186, "veg": false, "desc": "Orient chicken and peppers."}, {"cat": "Pizza", "name": "Mexican Chilli Pizza", "price": 211, "veg": false, "desc": "Mexican chicken and jalapeño."}, {"cat": "Pizza", "name": "Chic And Corn Pizza", "price": 224, "veg": false, "desc": "BBQ chicken, baby corn, olives."}, {"cat": "Pizza", "name": "Tandoori Chicken Pizza", "price": 194, "veg": false, "desc": "Chicken tikka, peppers, onion, tomato, coriander."}, {"cat": "Pizza", "name": "Spicy South Pizza", "price": 261, "veg": false, "desc": "Chettinad chicken, chilli, garlic, tomato, coriander."}, {"cat": "Pizza", "name": "Keema Pizza", "price": 261, "veg": false, "desc": "Chicken keema, chilli, tomato, coriander."}, {"cat": "Burgers", "name": "Paneer Crunch Burger", "price": 171, "veg": true, "desc": ""}, {"cat": "Burgers", "name": "Chicken Zinger Burger", "price": 143, "veg": false, "desc": ""}, {"cat": "Burgers", "name": "IFC Special Burger", "price": 155, "veg": false, "desc": ""}, {"cat": "Burgers", "name": "Veg Snacker Burger", "price": 99, "veg": true, "desc": ""}, {"cat": "Burgers", "name": "Veg Zinger Burger", "price": 124, "veg": true, "desc": ""}, {"cat": "Burgers", "name": "Chicken Snacker Burger", "price": 111, "veg": false, "desc": ""}, {"cat": "Snacks", "name": "French Fries", "price": 119, "veg": true, "desc": ""}, {"cat": "Snacks", "name": "Chicken Popcorn", "price": 186, "veg": false, "desc": ""}, {"cat": "Snacks", "name": "Chicken Nuggets", "price": 211, "veg": false, "desc": ""}, {"cat": "Snacks", "name": "Veg Nuggets", "price": 174, "veg": true, "desc": ""}, {"cat": "Snacks", "name": "Veg Fingers", "price": 174, "veg": true, "desc": ""}, {"cat": "Snacks", "name": "Chilli Pops", "price": 174, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Vanilla Shake", "price": 156, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Chocolate Shake", "price": 156, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Butterscotch Shake", "price": 156, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Blackcurrant Shake", "price": 156, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Green Apple Smoothie", "price": 174, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Litchi Smoothie", "price": 174, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Blackcurrant Smoothie", "price": 174, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Choco Almond Smoothie", "price": 174, "veg": true, "desc": ""}, {"cat": "Beverages", "name": "Lemon Blue Mocktail", "price": 149, "veg": true, "desc": "Non-alcoholic."}, {"cat": "Beverages", "name": "Green Apple Mocktail", "price": 149, "veg": true, "desc": "Non-alcoholic."}, {"cat": "Beverages", "name": "Virgin Mojito", "price": 149, "veg": true, "desc": "Non-alcoholic."}, {"cat": "Beverages", "name": "Currant Cooler Mocktail", "price": 149, "veg": true, "desc": "Non-alcoholic."}];
+const categories = ["All","Recommended","Combos & Meals","Starters","Pizza","Burgers","Snacks","Beverages","Veg","Non-Veg"];
+const recommended = new Set(["French Fries","Tandoori Chicken Pizza","Paneer Tikka Pizza","Cheese Bite Pizza","Chocolate Shake","Chicken Popcorn","Lemon Blue Mocktail","Veg Snacker Burger","Veg IFC Box Combo","Choco Almond Smoothie","IFC Special Burger Meal"]);
+let active = "All";
+let cart = JSON.parse(localStorage.getItem("ifc_cart") || "{}");
+
+function money(n){ return "₹" + n.toLocaleString("en-IN"); }
+function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
+
+function buildFilters(){
+ const mount=document.getElementById("filters");
+ mount.innerHTML=categories.map(c=>`<button class="chip ${c===active?'active':''}" onclick="setFilter('${c.replaceAll("'","\\'")}')">${c}</button>`).join("");
+}
+function setFilter(c){active=c; buildFilters(); renderMenu();}
+
+function filteredItems(){
+ const q=document.getElementById("search").value.trim().toLowerCase();
+ return MENU.filter(x=>{
+   const matchQ=!q || (x.name+" "+x.desc+" "+x.cat).toLowerCase().includes(q);
+   const matchCat=active==="All" || (active==="Recommended" && recommended.has(x.name)) || active===x.cat || (active==="Veg" && x.veg) || (active==="Non-Veg" && !x.veg);
+   return matchQ && matchCat;
+ });
+}
+function renderMenu(){
+ const arr=filteredItems(), mount=document.getElementById("menuMount"), empty=document.getElementById("empty");
+ if(!arr.length){mount.innerHTML=""; empty.style.display="block"; return;} empty.style.display="none";
+ const groupOrder=["Combos & Meals","Starters","Pizza","Burgers","Snacks","Beverages"];
+ const groups={}; arr.forEach(x=>(groups[x.cat]??=[]).push(x));
+ mount.innerHTML=groupOrder.filter(c=>groups[c]).map(c=>`
+   <div class="cat-section">
+     <div class="cat-title"><h3>${c}</h3><span class="cat-count">${groups[c].length} items</span></div>
+     <div class="items">${groups[c].map(x=>{
+        const i=MENU.indexOf(x);
+        return `<article class="item">
+          <div>
+            <span class="diet ${x.veg?'veg':'nonveg'}" title="${x.veg?'Vegetarian':'Non-vegetarian'}"></span>
+            <h4>${esc(x.name)}</h4>
+            ${x.desc?`<p>${esc(x.desc)}</p>`:""}
+            <div class="price">${money(x.price)}</div>
+          </div>
+          <button class="add" onclick="addItem(${i})">ADD</button>
+        </article>`
+     }).join("")}</div>
+   </div>`).join("");
+}
+function addItem(i){
+ cart[i]=(cart[i]||0)+1; saveCart(); showToast();
+}
+function changeQty(i,d){
+ cart[i]=(cart[i]||0)+d; if(cart[i]<=0) delete cart[i]; saveCart(); renderCart();
+}
+function removeItem(i){delete cart[i]; saveCart(); renderCart();}
+function saveCart(){localStorage.setItem("ifc_cart",JSON.stringify(cart)); updateCount();}
+function updateCount(){
+ const n=Object.values(cart).reduce((a,b)=>a+b,0);
+ document.querySelectorAll(".cartCount").forEach(x=>x.textContent=n);
+}
+function openCart(){renderCart();document.getElementById("drawer").classList.add("open");document.getElementById("back").classList.add("open");document.body.classList.add("lock")}
+function closeCart(){document.getElementById("drawer").classList.remove("open");document.getElementById("back").classList.remove("open");document.body.classList.remove("lock")}
+function renderCart(){
+ const list=document.getElementById("cartList");
+ const entries=Object.entries(cart);
+ if(!entries.length){list.innerHTML='<div class="cart-empty">Your cart is empty.<br>Add something delicious from the menu.</div>';document.getElementById("total").textContent="₹0";return;}
+ let total=0;
+ list.innerHTML=entries.map(([i,q])=>{
+   const x=MENU[+i], sub=x.price*q; total+=sub;
+   return `<div class="cartitem">
+    <div class="cartitem-top"><b>${esc(x.name)}</b><span class="p">${money(sub)}</span></div>
+    <div class="qty"><button onclick="changeQty(${i},-1)">−</button><span>${q}</span><button onclick="changeQty(${i},1)">+</button><button class="remove" onclick="removeItem(${i})">Remove</button></div>
+   </div>`
+ }).join("");
+ document.getElementById("total").textContent=money(total);
+}
+function checkout(){
+ const entries=Object.entries(cart); if(!entries.length){showToast("Add items first");return;}
+ let total=0, lines=entries.map(([i,q],idx)=>{const x=MENU[+i],s=x.price*q; total+=s; return `${idx+1}. ${x.name} x ${q} — ₹${s}`});
+ const msg=`Hi IFC Restaurant Luxettipet 👋\n\nI'd like to place this order:\n\n${lines.join("\n")}\n\nMenu subtotal: ₹${total}\n\nPlease confirm availability, final total and delivery/pickup details.`;
+ window.open("https://wa.me/918339833981?text="+encodeURIComponent(msg),"_blank");
+}
+function showToast(t="Added to cart"){const el=document.getElementById("toast");el.textContent=t;el.classList.add("show");setTimeout(()=>el.classList.remove("show"),1400)}
+document.getElementById("year").textContent=new Date().getFullYear();
+window.addEventListener("scroll",()=>document.getElementById("nav").classList.toggle("scrolled",scrollY>20));
+buildFilters();renderMenu();updateCount();
+</script>
+</body>
+</html>
